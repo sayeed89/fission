@@ -1,4 +1,4 @@
-FROM centos:6.10
+FROM amazonlinux:2
 
 LABEL maintainer="sahmed@gainsight.com"
 
