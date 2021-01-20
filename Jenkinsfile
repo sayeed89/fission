@@ -37,6 +37,7 @@ pipeline {
         stage('Checking the docker application') {
             steps {
                 sh ''' #!/bin/bash
+		ip=$(curl ifconfig.co)
 		echo $ip
 		http_code=$(curl -s -o /dev/null -I -w "%{http_code}" http://${ip}:8081/sample/)
                 if [ "$http_code" = "200" ]; then
