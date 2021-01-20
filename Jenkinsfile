@@ -39,7 +39,7 @@ pipeline {
                 sh ''' #!/bin/bash
 		ip=$(curl ifconfig.co)
 		echo $ip
-		http_code=$(curl -s -o /dev/null -I -w "%{http_code}" http://${ip}:8081/sample/)
+		http_code=$(curl -s -o /dev/null -I -w "%{http_code}" http://${ip}:8082)
                 if [ "$http_code" = "200" ]; then
                     echo "Docker Nginix Application is Up and Running"
                 fi
