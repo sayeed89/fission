@@ -37,10 +37,12 @@ pipeline {
         stage('Checking the docker application') {
             steps {
                 sh ''' #!/bin/bash
-                num=`curl -Is http://15.207.110.2:8081/sample/ | grep 200 | cut -f2 -d ' '`
-                if [ "$num" = "200" ]; then
-                    echo "Docker Apache Application is Up and Running"
-                fi
+		ip=$(curl ifconfig.co)
+		echo $ip
+		http_code=$(curl -s -o /dev/null -I -w "%{http_code}" http://${ip}:8081/sample/)
+		if [ "$http_code" = "200" ]; then
+		   echo "Docker Apache Application is Up and Running"
+		fi
                 '''
             }
         }
