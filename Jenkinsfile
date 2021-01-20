@@ -37,8 +37,9 @@ pipeline {
         stage('Checking the docker application') {
             steps {
                 sh ''' #!/bin/bash
-                num=`curl -Is http://15.207.110.2:8082 | grep 200 | cut -f2 -d ' '`
-                if [ "$num" = "200" ]; then
+		echo $ip
+		http_code=$(curl -s -o /dev/null -I -w "%{http_code}" http://${ip}:8081/sample/)
+                if [ "$http_code" = "200" ]; then
                     echo "Docker Nginix Application is Up and Running"
                 fi
                 '''
