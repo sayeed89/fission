@@ -23,7 +23,8 @@ pipeline {
                 cd fission
                 sudo docker  build -t apache-image .
                 sudo docker run --name apache-container -it -d -p 8081:8080 apache-image
-                '''
+                sleep 30
+		'''
             }
         }
         stage('Validating the docker') {
