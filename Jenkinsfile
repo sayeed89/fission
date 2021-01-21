@@ -29,6 +29,7 @@ pipeline {
         stage('Validating the docker') {
             steps {
                 sh ''' #!/bin/bash
+		sleep 30
                 sudo docker images
                 sudo docker ps -a
                 '''
